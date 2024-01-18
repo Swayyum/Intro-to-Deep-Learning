@@ -13,18 +13,19 @@ Prepare for Research: Equip yourself with the knowledge and skills to contribute
 
 Course Topics: 
 
-Introduction and Preliminaries
-Fully Connected Neural Networks
-Dimensioning and Generalization
-Convolutional Neural Networks (CNNs)
-Modern CNNs (ResNet)
-Working with Sequences and Recurrent Neural Networks (RNNs)
-Long-Short-Term Memory (LSTM)
-Gated Recurrent Units (GRU)
-Attention Mechanisms
-Transformers
-Computer Vision Applications
-Graph Neural Networks
-Generative Adversarial Network
-Reinforcement Learning
-Large Language Models and Self-Supervised Learning
+1. Introduction and Preliminaries
+2. Fully Connected Neural Networks
+3. Dimensioning and Generalization
+4. Convolutional Neural Networks (CNNs)
+5. Modern CNNs (ResNet)
+6. Working with Sequences and Recurrent Neural Networks (RNNs)
+7. Long-Short-Term Memory (LSTM)
+8. Gated Recurrent Units (GRU)
+9. Attention Mechanisms
+10. Transformers
+11. Computer Vision Applications
+12. Graph Neural Networks
+13. Generative Adversarial Network
+14. Reinforcement Learning
+15. Large Language Models and Self-Supervised Learning
+16. Large Language Models and Self-Supervised Learning
