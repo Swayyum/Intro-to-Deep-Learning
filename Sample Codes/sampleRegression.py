@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 
 # Load the wine quality dataset from a CSV file
-df = pd.read_csv('./datasets/winequality.csv')
+df = pd.read_csv('C:/Users/X390 Yoga/Desktop/Swayam/Intro to Deep Learning/Datasets/winequality.csv')
 print(df.head())
 print(df.shape)
 
