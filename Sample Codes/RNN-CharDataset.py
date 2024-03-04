@@ -5,11 +5,11 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 # Sample text
-text = "This is a simple example to demonstrate how to predict the next character using RNN in PyTorch."
-
+text ="Next character prediction is a fundamental task in the field of natural language processing (NLP) that involves predicting the next character in a sequence of text based on the characters that precede it. This task is essential for various applications, including text auto-completion, spell checking, and even in the development of sophisticated AI models capable of generating human-like text. At its core, next character prediction relies on statistical models or deep learning algorithms to analyze a given sequence of text and predict which character is most likely to follow. These predictions are based on patterns and relationships learned from large datasets of text during the training phase of the model. One of the most popular approaches to next character prediction involves the use of Recurrent Neural Networks (RNNs), and more specifically, a variant called Long Short-Term Memory (LSTM) networks. RNNs are particularly well-suited for sequential data like text, as they can maintain information in 'memory' about previous characters to inform the prediction of the next character. LSTM networks enhance this capability by being able to remember long-term dependencies, making them even more effective for next character prediction tasks. Training a model for next character prediction involves feeding it large amounts of text data, allowing it to learn the probability of each character's appearance following a sequence of characters. During this training process, the model adjusts its parameters to minimize the difference between its predictions and the actual outcomes, thus improving its predictive accuracy over time. Once trained, the model can be used to predict the next character in a given piece of text by considering the sequence of characters that precede it. This can enhance user experience in text editing software, improve efficiency in coding environments with auto-completion features, and enable more natural interactions with AI-based chatbots and virtual assistants. In summary, next character prediction plays a crucial role in enhancing the capabilities of various NLP applications, making text-based interactions more efficient, accurate, and human-like. Through the use of advanced machine learning models like RNNs and LSTMs, next character prediction continues to evolve, opening new possibilities for the future of text-based technology."
 # Creating character vocabulary
 # part of the data preprocessing step for a character-level text modeling task. 
 # Create mappings between characters in the text and numerical indices
+
 
 #set(text): Creates a set of unique characters found in the text. The set function removes any duplicate characters.
 #list(set(text)): Converts the set back into a list so that it can be sorted. 
@@ -71,13 +71,40 @@ class CharRNN(nn.Module):
         output = self.fc(output[:, -1, :])  # Get the output of the last RNN cell
         return output
 
+class CharLSTM(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(CharLSTM, self).__init__()
+        self.hidden_size = hidden_size
+        self.embedding = nn.Embedding(input_size, hidden_size)
+        self.lstm = nn.LSTM(hidden_size, hidden_size, batch_first=True)
+        self.fc = nn.Linear(hidden_size, output_size)
+
+    def forward(self, x):
+        embedded = self.embedding(x)
+        output, _ = self.lstm(embedded)
+        output = self.fc(output[:, -1, :])
+        return output
+
+class CharGRU(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(CharGRU, self).__init__()
+        self.hidden_size = hidden_size
+        self.embedding = nn.Embedding(input_size, hidden_size)
+        self.gru = nn.GRU(hidden_size, hidden_size, batch_first=True)
+        self.fc = nn.Linear(hidden_size, output_size)
+
+    def forward(self, x):
+        embedded = self.embedding(x)
+        output, _ = self.gru(embedded)
+        output = self.fc(output[:, -1, :])
+        return output
 # Hyperparameters
 hidden_size = 128
 learning_rate = 0.005
 epochs = 100
 
 # Model, loss, and optimizer
-model = CharRNN(len(chars), hidden_size, len(chars))
+model = CharGRU(len(chars), hidden_size, len(chars))
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
@@ -113,6 +140,6 @@ def predict_next_char(model, char_to_ix, ix_to_char, initial_str):
         return ix_to_char[predicted_index]
 
 # Predicting the next character
-test_str = "This is a simple example to demonstrate how to predict the next char"
+test_str = "Next character prediction is "
 predicted_char = predict_next_char(model, char_to_ix, ix_to_char, test_str)
 print(f"Predicted next character: '{predicted_char}'")
