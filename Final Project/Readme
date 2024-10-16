@@ -49,5 +49,5 @@ The models were evaluated and compared based on these metrics, with the **U-Net*
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-repository/parking-lot-detection.git
+git clone https://github.com/Swayyum/Intro-to-Deep-Learning/tree/master/Final%20Project
 cd parking-lot-detection
